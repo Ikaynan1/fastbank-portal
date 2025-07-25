@@ -61,6 +61,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				fastbank: {
+					blue: 'hsl(var(--fastbank-blue))',
+					orange: 'hsl(var(--fastbank-orange))',
+					green: 'hsl(var(--fastbank-green))',
+					'dark-bg': 'hsl(var(--fastbank-dark-bg))',
+					'dark-card': 'hsl(var(--fastbank-dark-card))',
+					'dark-sidebar': 'hsl(var(--fastbank-dark-sidebar))'
 				}
 			},
 			borderRadius: {

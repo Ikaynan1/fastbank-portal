@@ -1,0 +1,244 @@
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { 
+  Download, 
+  Search, 
+  Plus, 
+  RotateCcw, 
+  DollarSign, 
+  ArrowUpDown, 
+  Info, 
+  FileText, 
+  Settings 
+} from "lucide-react";
+
+interface ContaFilha {
+  cpf: string;
+  nome: string;
+  saldo: string;
+  chavePix: string;
+  nascimento: string;
+  criacao: string;
+  posseAte: string;
+}
+
+const contasFilhas: ContaFilha[] = [
+  {
+    cpf: "72935324072",
+    nome: "JOSE CARLOS SANTOS DA SILVA",
+    saldo: "R$ 0,01",
+    chavePix: "72935324072",
+    nascimento: "03/06/1974",
+    criacao: "24/07/2025 23:06",
+    posseAte: "29/07/2025 23:06"
+  },
+  {
+    cpf: "23950872892",
+    nome: "JADEN PRESCOTT PAXTON",
+    saldo: "R$ 0,00",
+    chavePix: "23950872892",
+    nascimento: "29/05/1998",
+    criacao: "24/07/2025 23:06",
+    posseAte: "29/07/2025 23:06"
+  },
+  {
+    cpf: "10872054845",
+    nome: "SILVANA MARTINS DA SILVA",
+    saldo: "R$ 0,02",
+    chavePix: "10872054845",
+    nascimento: "27/08/1971",
+    criacao: "24/07/2025 23:06",
+    posseAte: "29/07/2025 23:06"
+  },
+  {
+    cpf: "55334024700",
+    nome: "VANDA CASSINO",
+    saldo: "R$ 0,02",
+    chavePix: "55334024700",
+    nascimento: "14/04/1960",
+    criacao: "23/07/2025 23:12",
+    posseAte: "30/07/2025 16:56"
+  },
+  {
+    cpf: "19073774764",
+    nome: "ANA TORRES HERMSDORFF",
+    saldo: "R$ 0,02",
+    chavePix: "19073774764",
+    nascimento: "04/05/2001",
+    criacao: "20/07/2025 20:03",
+    posseAte: "30/07/2025 17:17"
+  },
+  {
+    cpf: "05612492537",
+    nome: "ANTONIO BORGES DA SILVA",
+    saldo: "R$ 0,01",
+    chavePix: "05612492537",
+    nascimento: "13/06/1980",
+    criacao: "20/07/2025 20:03",
+    posseAte: "25/07/2025 20:03"
+  },
+  {
+    cpf: "86603398516",
+    nome: "VANDERLEI LIMA SANTOS",
+    saldo: "R$ 0,02",
+    chavePix: "86603398516",
+    nascimento: "18/08/1998",
+    criacao: "20/07/2025 20:03",
+    posseAte: "27/07/2025 20:49"
+  },
+  {
+    cpf: "61646148215",
+    nome: "MARIA ELISABETE SILVA DE SOUSA",
+    saldo: "R$ 0,01",
+    chavePix: "61646148215",
+    nascimento: "27/07/1973",
+    criacao: "18/07/2025 00:32",
+    posseAte: "26/07/2025 01:02"
+  },
+  {
+    cpf: "09881297605",
+    nome: "ELIANE CORREIA DA SILVA",
+    saldo: "R$ 0,01",
+    chavePix: "09881297605",
+    nascimento: "19/04/1973",
+    criacao: "18/07/2025 00:32",
+    posseAte: "26/07/2025 22:50"
+  },
+  {
+    cpf: "03378782340",
+    nome: "MARINA ALVES BARBOSA",
+    saldo: "R$ 0,02",
+    chavePix: "03378782340",
+    nascimento: "14/07/1978",
+    criacao: "18/07/2025 00:32",
+    posseAte: "26/07/2025 23:10"
+  }
+];
+
+export default function ContasFilhas() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [recordsPerPage, setRecordsPerPage] = useState("25");
+
+  const filteredContas = contasFilhas.filter(conta =>
+    conta.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    conta.cpf.includes(searchTerm)
+  );
+
+  return (
+    <div className="min-h-screen bg-background p-6">
+      <div className="max-w-7xl mx-auto space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-foreground">Contas Filhas</h1>
+            <p className="text-muted-foreground">Gerenciamento de contas filhas</p>
+          </div>
+        </div>
+
+        {/* Controls */}
+        <Card className="bg-card border-border">
+          <CardContent className="p-6">
+            <div className="flex flex-wrap items-center gap-4">
+              <Button className="bg-fastbank-blue hover:bg-fastbank-blue/90">
+                <Plus className="w-4 h-4 mr-2" />
+                CRIAR CONTA FILHA
+              </Button>
+              <Button className="bg-fastbank-blue hover:bg-fastbank-blue/90">
+                <RotateCcw className="w-4 h-4 mr-2" />
+                DEVOLVER CONTAS FILHAS
+              </Button>
+              <Button className="bg-fastbank-blue hover:bg-fastbank-blue/90">
+                <Download className="w-4 h-4 mr-2" />
+                EXPORTAR DADOS
+              </Button>
+              
+              <div className="flex items-center gap-2 ml-auto">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                  <Input
+                    placeholder="Pesquisar..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 w-64"
+                  />
+                </div>
+                <Select value={recordsPerPage} onValueChange={setRecordsPerPage}>
+                  <SelectTrigger className="w-32">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="25">25</SelectItem>
+                    <SelectItem value="50">50</SelectItem>
+                    <SelectItem value="100">100</SelectItem>
+                  </SelectContent>
+                </Select>
+                <span className="text-sm text-muted-foreground">registros por página</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Table */}
+        <Card className="bg-card border-border">
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow className="border-b border-border">
+                    <TableHead className="text-left">CONTA</TableHead>
+                    <TableHead className="text-left">SALDO</TableHead>
+                    <TableHead className="text-left">CHAVE PIX</TableHead>
+                    <TableHead className="text-left">NASCIMENTO</TableHead>
+                    <TableHead className="text-left">DATA DE CRIAÇÃO</TableHead>
+                    <TableHead className="text-left">POSSE ATÉ</TableHead>
+                    <TableHead className="text-center">AÇÕES</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {filteredContas.map((conta, index) => (
+                    <TableRow key={index} className="border-b border-border hover:bg-muted/50">
+                      <TableCell>
+                        <div>
+                          <div className="font-medium">{conta.cpf}</div>
+                          <div className="text-sm text-muted-foreground">{conta.nome}</div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="font-medium">{conta.saldo}</TableCell>
+                      <TableCell className="font-mono text-sm">{conta.chavePix}</TableCell>
+                      <TableCell>{conta.nascimento}</TableCell>
+                      <TableCell>{conta.criacao}</TableCell>
+                      <TableCell>{conta.posseAte}</TableCell>
+                      <TableCell>
+                        <div className="flex items-center justify-center gap-1">
+                          <Button size="sm" className="bg-fastbank-blue hover:bg-fastbank-blue/90 h-8 w-8 p-0">
+                            <DollarSign className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" className="bg-fastbank-blue hover:bg-fastbank-blue/90 h-8 w-8 p-0">
+                            <ArrowUpDown className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" className="bg-fastbank-blue hover:bg-fastbank-blue/90 h-8 w-8 p-0">
+                            <Settings className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" className="bg-fastbank-blue hover:bg-fastbank-blue/90 h-8 w-8 p-0">
+                            <FileText className="w-4 h-4" />
+                          </Button>
+                          <Button size="sm" className="bg-fastbank-blue hover:bg-fastbank-blue/90 h-8 w-8 p-0">
+                            <Info className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
