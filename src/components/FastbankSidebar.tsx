@@ -58,7 +58,7 @@ export function FastbankSidebar() {
       <SidebarHeader className="p-6">
         {!collapsed && (
           <div className="flex items-center gap-3">
-            <img src={forceBankLogo} alt="ForceBank" className="h-8 w-auto" />
+            <img src={forceBankLogo} alt="ForceBank" className="h-12 w-auto" />
           </div>
         )}
         {collapsed && (

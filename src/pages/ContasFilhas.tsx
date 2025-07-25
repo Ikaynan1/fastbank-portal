@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useToast } from "@/hooks/use-toast";
 import { 
   Download, 
   Search, 
@@ -13,7 +14,8 @@ import {
   ArrowUpDown, 
   Info, 
   FileText, 
-  Settings 
+  Settings,
+  Loader2
 } from "lucide-react";
 
 interface ContaFilha {
@@ -119,14 +121,76 @@ const contasFilhas: ContaFilha[] = [
   }
 ];
 
+// Função para gerar dados aleatórios brasileiros
+const generateRandomContaFilha = (): ContaFilha => {
+  const nomesBrasileiros = [
+    "JOSÉ SILVA", "MARIA SANTOS", "ANTONIO OLIVEIRA", "ANA COSTA", "CARLOS SOUZA",
+    "FRANCISCA LIMA", "PAULO FERREIRA", "ADRIANA RODRIGUES", "JOÃO ALVES", "JULIANA PEREIRA",
+    "MARCOS GOMES", "LUCIANA MARTINS", "PEDRO RIBEIRO", "CAMILA CARVALHO", "RAFAEL BARBOSA",
+    "FERNANDA ARAÚJO", "EDUARDO DIAS", "PATRÍCIA FERNANDES", "RICARDO MELO", "AMANDA ROCHA",
+    "ROBERTO CARDOSO", "VANESSA TORRES", "GUSTAVO NASCIMENTO", "PRISCILA CASTRO", "DANIEL AZEVEDO"
+  ];
+
+  // Gerar CPF aleatório (11 dígitos)
+  const generateCPF = () => {
+    return Math.floor(Math.random() * 90000000000 + 10000000000).toString();
+  };
+
+  // Gerar data de nascimento aleatória (1960-2005)
+  const generateBirthDate = () => {
+    const year = Math.floor(Math.random() * (2005 - 1960 + 1)) + 1960;
+    const month = Math.floor(Math.random() * 12) + 1;
+    const day = Math.floor(Math.random() * 28) + 1;
+    return `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+  };
+
+  // Data e hora atual
+  const now = new Date();
+  const currentDateTime = `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+  const cpf = generateCPF();
+  const nome = nomesBrasileiros[Math.floor(Math.random() * nomesBrasileiros.length)];
+
+  return {
+    cpf,
+    nome,
+    saldo: "R$ 0,00",
+    chavePix: cpf,
+    nascimento: generateBirthDate(),
+    criacao: currentDateTime,
+    posseAte: "" // Não usado mais
+  };
+};
+
 export default function ContasFilhas() {
   const [searchTerm, setSearchTerm] = useState("");
   const [recordsPerPage, setRecordsPerPage] = useState("25");
+  const [contas, setContas] = useState<ContaFilha[]>(contasFilhas);
+  const [isCreating, setIsCreating] = useState(false);
+  const { toast } = useToast();
 
-  const filteredContas = contasFilhas.filter(conta =>
+  const filteredContas = contas.filter(conta =>
     conta.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
     conta.cpf.includes(searchTerm)
   );
+
+  const handleCreateContaFilha = async () => {
+    setIsCreating(true);
+    
+    // Simular loading de 5 segundos
+    setTimeout(() => {
+      const novaConta = generateRandomContaFilha();
+      setContas(prev => [novaConta, ...prev]);
+      
+      toast({
+        title: "Sucesso!",
+        description: "Conta filha criada com sucesso!",
+        duration: 4000,
+      });
+      
+      setIsCreating(false);
+    }, 5000);
+  };
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -143,9 +207,17 @@ export default function ContasFilhas() {
         <Card className="bg-card border-border">
           <CardContent className="p-6">
             <div className="flex flex-wrap items-center gap-4">
-              <Button className="bg-fastbank-blue hover:bg-fastbank-blue/90">
-                <Plus className="w-4 h-4 mr-2" />
-                CRIAR CONTA FILHA
+              <Button 
+                className="bg-fastbank-blue hover:bg-fastbank-blue/90"
+                onClick={handleCreateContaFilha}
+                disabled={isCreating}
+              >
+                {isCreating ? (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                ) : (
+                  <Plus className="w-4 h-4 mr-2" />
+                )}
+                {isCreating ? "CRIANDO..." : "CRIAR CONTA FILHA"}
               </Button>
               <Button className="bg-fastbank-blue hover:bg-fastbank-blue/90">
                 <RotateCcw className="w-4 h-4 mr-2" />
@@ -199,7 +271,7 @@ export default function ContasFilhas() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {filteredContas.map((conta, index) => (
+                {filteredContas.map((conta, index) => (
                     <TableRow key={index} className="border-b border-border hover:bg-muted/50">
                       <TableCell>
                         <div>
