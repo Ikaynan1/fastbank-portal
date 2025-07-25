@@ -11,6 +11,7 @@ import {
   Moon,
   Sun,
 } from "lucide-react";
+import forceBankLogo from "@/assets/forcebank-logo.png";
 import {
   Sidebar,
   SidebarContent,
@@ -57,12 +58,7 @@ export function FastbankSidebar() {
       <SidebarHeader className="p-6">
         {!collapsed && (
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <CreditCard className="w-6 h-6 text-primary-foreground" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-sidebar-foreground">fastbank</h1>
-            </div>
+            <img src={forceBankLogo} alt="ForceBank" className="h-8 w-auto" />
           </div>
         )}
         {collapsed && (
@@ -97,7 +93,7 @@ export function FastbankSidebar() {
         <div className="flex flex-col gap-2">
           {!collapsed && (
             <div className="mb-2">
-              <div className="text-sm font-medium text-sidebar-foreground">Ikayna Toscano Bezerra</div>
+              <div className="text-sm font-medium text-sidebar-foreground">Carlos José Fernandes</div>
               <div className="text-xs text-muted-foreground">Saldo: R$ 32,40</div>
               <div className="text-xs text-muted-foreground">Saldo clientes: R$ 0,22</div>
             </div>

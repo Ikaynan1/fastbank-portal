@@ -194,7 +194,7 @@ export default function ContasFilhas() {
                     <TableHead className="text-left">CHAVE PIX</TableHead>
                     <TableHead className="text-left">NASCIMENTO</TableHead>
                     <TableHead className="text-left">DATA DE CRIAÇÃO</TableHead>
-                    <TableHead className="text-left">POSSE ATÉ</TableHead>
+                    
                     <TableHead className="text-center">AÇÕES</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -211,7 +211,7 @@ export default function ContasFilhas() {
                       <TableCell className="font-mono text-sm">{conta.chavePix}</TableCell>
                       <TableCell>{conta.nascimento}</TableCell>
                       <TableCell>{conta.criacao}</TableCell>
-                      <TableCell>{conta.posseAte}</TableCell>
+                      
                       <TableCell>
                         <div className="flex items-center justify-center gap-1">
                           <Button size="sm" className="bg-fastbank-blue hover:bg-fastbank-blue/90 h-8 w-8 p-0">

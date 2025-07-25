@@ -20,7 +20,7 @@ export default function Dashboard() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
-            <p className="text-muted-foreground">Painel de controle Fastbank</p>
+            <p className="text-muted-foreground">Painel de controle ForceBank</p>
           </div>
           <Button variant="outline" size="sm">
             <RefreshCw className="w-4 h-4 mr-2" />
@@ -114,7 +114,7 @@ export default function Dashboard() {
           <CardContent className="space-y-3">
             <div className="flex items-start gap-3">
               <Badge className="bg-fastbank-orange text-white">ABERTURA DE CONTA</Badge>
-              <span className="text-sm">Custo de R$ 1,50 debitado da conta mãe.</span>
+              <span className="text-sm">Custo de R$ 0,50 debitado da conta mãe.</span>
             </div>
             <div className="flex items-start gap-3">
               <Badge className="bg-fastbank-orange text-white">SALDO RECEBIDO DE CONTA FILHA</Badge>
@@ -131,6 +131,10 @@ export default function Dashboard() {
             <div className="flex items-start gap-3">
               <Badge className="bg-fastbank-orange text-white">CONTA FILHA FUNCIONAMENTO</Badge>
               <span className="text-sm">Após cadastrada, a conta filha já ficará com a Chave Pix ativa sem desativar.</span>
+            </div>
+            <div className="flex items-start gap-3">
+              <Badge className="bg-fastbank-orange text-white">TAXA DE SAQUE CONTA MÃE</Badge>
+              <span className="text-sm">Taxa de saque para Conta Mãe: 6% — Será descontado 6% automaticamente ao receber um PIX.</span>
             </div>
           </CardContent>
         </Card>
