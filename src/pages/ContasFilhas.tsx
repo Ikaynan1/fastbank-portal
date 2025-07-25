@@ -204,13 +204,14 @@ export default function ContasFilhas() {
         </div>
 
         {/* Controls */}
-        <Card className="bg-card border-border">
-          <CardContent className="p-6">
-            <div className="flex flex-wrap items-center gap-4">
+        <Card className="card-modern">
+          <CardContent className="p-8">
+            <div className="flex flex-wrap items-center gap-6">
               <Button 
-                className="bg-fastbank-blue hover:bg-fastbank-blue/90"
+                variant="forcebank"
                 onClick={handleCreateContaFilha}
                 disabled={isCreating}
+                className="shadow-glow"
               >
                 {isCreating ? (
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -219,27 +220,27 @@ export default function ContasFilhas() {
                 )}
                 {isCreating ? "CRIANDO..." : "CRIAR CONTA FILHA"}
               </Button>
-              <Button className="bg-fastbank-blue hover:bg-fastbank-blue/90">
+              <Button variant="orange">
                 <RotateCcw className="w-4 h-4 mr-2" />
                 DEVOLVER CONTAS FILHAS
               </Button>
-              <Button className="bg-fastbank-blue hover:bg-fastbank-blue/90">
+              <Button variant="success">
                 <Download className="w-4 h-4 mr-2" />
                 EXPORTAR DADOS
               </Button>
               
-              <div className="flex items-center gap-2 ml-auto">
+              <div className="flex items-center gap-4 ml-auto">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                   <Input
                     placeholder="Pesquisar..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 w-64"
+                    className="pl-10 w-64 rounded-xl border-border/50"
                   />
                 </div>
                 <Select value={recordsPerPage} onValueChange={setRecordsPerPage}>
-                  <SelectTrigger className="w-32">
+                  <SelectTrigger className="w-32 rounded-xl">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -255,7 +256,7 @@ export default function ContasFilhas() {
         </Card>
 
         {/* Table */}
-        <Card className="bg-card border-border">
+        <Card className="card-modern overflow-hidden">
           <CardContent className="p-0">
             <div className="overflow-x-auto">
               <Table>
@@ -285,20 +286,20 @@ export default function ContasFilhas() {
                       <TableCell>{conta.criacao}</TableCell>
                       
                       <TableCell>
-                        <div className="flex items-center justify-center gap-1">
-                          <Button size="sm" className="bg-fastbank-blue hover:bg-fastbank-blue/90 h-8 w-8 p-0">
+                        <div className="flex items-center justify-center gap-2">
+                          <Button size="sm" variant="forcebank" className="h-8 w-8 p-0">
                             <DollarSign className="w-4 h-4" />
                           </Button>
-                          <Button size="sm" className="bg-fastbank-blue hover:bg-fastbank-blue/90 h-8 w-8 p-0">
+                          <Button size="sm" variant="orange" className="h-8 w-8 p-0">
                             <ArrowUpDown className="w-4 h-4" />
                           </Button>
-                          <Button size="sm" className="bg-fastbank-blue hover:bg-fastbank-blue/90 h-8 w-8 p-0">
+                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0 hover:bg-muted">
                             <Settings className="w-4 h-4" />
                           </Button>
-                          <Button size="sm" className="bg-fastbank-blue hover:bg-fastbank-blue/90 h-8 w-8 p-0">
+                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0 hover:bg-muted">
                             <FileText className="w-4 h-4" />
                           </Button>
-                          <Button size="sm" className="bg-fastbank-blue hover:bg-fastbank-blue/90 h-8 w-8 p-0">
+                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0 hover:bg-muted">
                             <Info className="w-4 h-4" />
                           </Button>
                         </div>

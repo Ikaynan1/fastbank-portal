@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				heading: ['Space Grotesk', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -62,19 +66,23 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				fastbank: {
-					blue: 'hsl(var(--fastbank-blue))',
-					orange: 'hsl(var(--fastbank-orange))',
-					green: 'hsl(var(--fastbank-green))',
-					'dark-bg': 'hsl(var(--fastbank-dark-bg))',
-					'dark-card': 'hsl(var(--fastbank-dark-card))',
-					'dark-sidebar': 'hsl(var(--fastbank-dark-sidebar))'
+				forcebank: {
+					primary: 'hsl(var(--forcebank-primary))',
+					blue: 'hsl(var(--forcebank-blue))',
+					orange: 'hsl(var(--forcebank-orange))',
+					green: 'hsl(var(--forcebank-green))',
 				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				xl: '1.5rem',
+			},
+			boxShadow: {
+				modern: 'var(--shadow-modern)',
+				'modern-lg': 'var(--shadow-modern-lg)',
+				glow: 'var(--shadow-glow)',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -92,11 +100,48 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'scale-in': {
+					'0%': {
+						transform: 'scale(0.95)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'scale(1)',
+						opacity: '1'
+					}
+				},
+				shimmer: {
+					from: {
+						backgroundPosition: '0 0'
+					},
+					to: {
+						backgroundPosition: '-200% 0'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'scale-in': 'scale-in 0.2s ease-out',
+				shimmer: 'shimmer 2s linear infinite',
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'forcebank-gradient': 'var(--forcebank-gradient)',
+				'forcebank-orange-gradient': 'var(--forcebank-orange-gradient)',
+				'forcebank-success-gradient': 'var(--forcebank-success-gradient)',
 			}
 		}
 	},
