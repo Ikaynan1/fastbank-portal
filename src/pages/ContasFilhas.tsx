@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useToast } from "@/hooks/use-toast";
 import { 
   Download, 
@@ -167,6 +168,8 @@ export default function ContasFilhas() {
   const [recordsPerPage, setRecordsPerPage] = useState("25");
   const [contas, setContas] = useState<ContaFilha[]>(contasFilhas);
   const [isCreating, setIsCreating] = useState(false);
+  const [selectedConta, setSelectedConta] = useState<ContaFilha | null>(null);
+  const [qrCode, setQrCode] = useState("");
   const { toast } = useToast();
 
   const filteredContas = contas.filter(conta =>
@@ -292,9 +295,71 @@ export default function ContasFilhas() {
                       
                       <TableCell>
                         <div className="flex items-center justify-center gap-2">
-                          <Button size="sm" variant="forcebank" className="h-8 w-8 p-0">
-                            <DollarSign className="w-4 h-4" />
-                          </Button>
+                          <Sheet>
+                            <SheetTrigger asChild>
+                              <Button 
+                                size="sm" 
+                                variant="forcebank" 
+                                className="h-8 w-8 p-0"
+                                onClick={() => setSelectedConta(conta)}
+                              >
+                                <DollarSign className="w-4 h-4" />
+                              </Button>
+                            </SheetTrigger>
+                            <SheetContent className="w-[400px] sm:w-[540px]">
+                              <SheetHeader>
+                                <SheetTitle className="text-left">
+                                  CONTA: {selectedConta?.nome || conta.nome}
+                                </SheetTitle>
+                              </SheetHeader>
+                              <div className="mt-6 space-y-6">
+                                <div>
+                                  <h3 className="text-lg font-semibold text-foreground">
+                                    SALDO DA CONTA: {selectedConta?.saldo || conta.saldo}
+                                  </h3>
+                                </div>
+                                
+                                <div className="space-y-4">
+                                  <div>
+                                    <label htmlFor="qrcode" className="block text-sm font-medium text-foreground mb-2">
+                                      Cole o QR Code aqui:
+                                    </label>
+                                    <Input
+                                      id="qrcode"
+                                      placeholder="Cole o código QR aqui..."
+                                      value={qrCode}
+                                      onChange={(e) => setQrCode(e.target.value)}
+                                      className="w-full"
+                                    />
+                                  </div>
+                                  
+                                  <Button 
+                                    variant="forcebank" 
+                                    className="w-full shadow-glow"
+                                    onClick={() => {
+                                      if (qrCode.trim()) {
+                                        toast({
+                                          title: "QR Code enviado!",
+                                          description: `QR Code processado para ${selectedConta?.nome || conta.nome}`,
+                                          duration: 3000,
+                                        });
+                                        setQrCode("");
+                                      } else {
+                                        toast({
+                                          title: "Erro",
+                                          description: "Por favor, cole um QR Code válido",
+                                          variant: "destructive",
+                                          duration: 3000,
+                                        });
+                                      }
+                                    }}
+                                  >
+                                    ENVIAR
+                                  </Button>
+                                </div>
+                              </div>
+                            </SheetContent>
+                          </Sheet>
                           <Button size="sm" variant="orange" className="h-8 w-8 p-0">
                             <ArrowUpDown className="w-4 h-4" />
                           </Button>
