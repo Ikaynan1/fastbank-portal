@@ -64,7 +64,6 @@ export function FastbankSidebar() {
             <div>
               <div className="text-sm font-medium text-sidebar-foreground">Carlos José Fernandes</div>
               <div className="text-xs text-muted-foreground">Saldo: R$ 32,40</div>
-              <div className="text-xs text-muted-foreground">Saldo clientes: R$ 0,22</div>
             </div>
           </div>
         )}

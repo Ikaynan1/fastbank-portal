@@ -32,7 +32,7 @@ const contasFilhas: ContaFilha[] = [
   {
     cpf: "72935324072",
     nome: "JOSE CARLOS SANTOS DA SILVA",
-    saldo: "R$ 0,01",
+    saldo: "R$ 32,40",
     chavePix: "72935324072",
     nascimento: "03/06/1974",
     criacao: "24/07/2025 23:06",
@@ -41,7 +41,7 @@ const contasFilhas: ContaFilha[] = [
   {
     cpf: "23950872892",
     nome: "JADEN PRESCOTT PAXTON",
-    saldo: "R$ 0,00",
+    saldo: "R$ 32,40",
     chavePix: "23950872892",
     nascimento: "29/05/1998",
     criacao: "24/07/2025 23:06",
@@ -50,7 +50,7 @@ const contasFilhas: ContaFilha[] = [
   {
     cpf: "10872054845",
     nome: "SILVANA MARTINS DA SILVA",
-    saldo: "R$ 0,02",
+    saldo: "R$ 32,40",
     chavePix: "10872054845",
     nascimento: "27/08/1971",
     criacao: "24/07/2025 23:06",
@@ -59,7 +59,7 @@ const contasFilhas: ContaFilha[] = [
   {
     cpf: "55334024700",
     nome: "VANDA CASSINO",
-    saldo: "R$ 0,02",
+    saldo: "R$ 32,40",
     chavePix: "55334024700",
     nascimento: "14/04/1960",
     criacao: "23/07/2025 23:12",
@@ -68,7 +68,7 @@ const contasFilhas: ContaFilha[] = [
   {
     cpf: "19073774764",
     nome: "ANA TORRES HERMSDORFF",
-    saldo: "R$ 0,02",
+    saldo: "R$ 32,40",
     chavePix: "19073774764",
     nascimento: "04/05/2001",
     criacao: "20/07/2025 20:03",
@@ -77,7 +77,7 @@ const contasFilhas: ContaFilha[] = [
   {
     cpf: "05612492537",
     nome: "ANTONIO BORGES DA SILVA",
-    saldo: "R$ 0,01",
+    saldo: "R$ 32,40",
     chavePix: "05612492537",
     nascimento: "13/06/1980",
     criacao: "20/07/2025 20:03",
@@ -86,7 +86,7 @@ const contasFilhas: ContaFilha[] = [
   {
     cpf: "86603398516",
     nome: "VANDERLEI LIMA SANTOS",
-    saldo: "R$ 0,02",
+    saldo: "R$ 32,40",
     chavePix: "86603398516",
     nascimento: "18/08/1998",
     criacao: "20/07/2025 20:03",
@@ -95,7 +95,7 @@ const contasFilhas: ContaFilha[] = [
   {
     cpf: "61646148215",
     nome: "MARIA ELISABETE SILVA DE SOUSA",
-    saldo: "R$ 0,01",
+    saldo: "R$ 32,40",
     chavePix: "61646148215",
     nascimento: "27/07/1973",
     criacao: "18/07/2025 00:32",
@@ -104,7 +104,7 @@ const contasFilhas: ContaFilha[] = [
   {
     cpf: "09881297605",
     nome: "ELIANE CORREIA DA SILVA",
-    saldo: "R$ 0,01",
+    saldo: "R$ 32,40",
     chavePix: "09881297605",
     nascimento: "19/04/1973",
     criacao: "18/07/2025 00:32",
@@ -113,7 +113,7 @@ const contasFilhas: ContaFilha[] = [
   {
     cpf: "03378782340",
     nome: "MARINA ALVES BARBOSA",
-    saldo: "R$ 0,02",
+    saldo: "R$ 32,40",
     chavePix: "03378782340",
     nascimento: "14/07/1978",
     criacao: "18/07/2025 00:32",
@@ -154,7 +154,7 @@ const generateRandomContaFilha = (): ContaFilha => {
   return {
     cpf,
     nome,
-    saldo: "R$ 0,00",
+    saldo: "R$ 32,40",
     chavePix: cpf,
     nascimento: generateBirthDate(),
     criacao: currentDateTime,
