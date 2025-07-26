@@ -280,7 +280,12 @@ export default function ContasFilhas() {
                           <div className="text-sm text-muted-foreground">{conta.nome}</div>
                         </div>
                       </TableCell>
-                      <TableCell className="font-medium">{conta.saldo}</TableCell>
+                       <TableCell>
+                         <div>
+                           <div className="font-medium">{conta.saldo}</div>
+                           <div className="text-xs text-muted-foreground">Saldo da Conta Mãe: R$ 32,40</div>
+                         </div>
+                       </TableCell>
                       <TableCell className="font-mono text-sm">{conta.chavePix}</TableCell>
                       <TableCell>{conta.nascimento}</TableCell>
                       <TableCell>{conta.criacao}</TableCell>
