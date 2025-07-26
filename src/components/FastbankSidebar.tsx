@@ -57,8 +57,15 @@ export function FastbankSidebar() {
     <Sidebar className={`${collapsed ? "w-14" : "w-64"} border-r border-sidebar-border`} collapsible="icon">
       <SidebarHeader className="p-6">
         {!collapsed && (
-          <div className="flex items-center gap-3">
-            <img src={forceBankLogo} alt="ForceBank" className="h-16 w-auto" />
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-3">
+              <img src={forceBankLogo} alt="ForceBank" className="h-16 w-auto" />
+            </div>
+            <div>
+              <div className="text-sm font-medium text-sidebar-foreground">Carlos José Fernandes</div>
+              <div className="text-xs text-muted-foreground">Saldo: R$ 32,40</div>
+              <div className="text-xs text-muted-foreground">Saldo clientes: R$ 0,22</div>
+            </div>
           </div>
         )}
         {collapsed && (
@@ -90,35 +97,25 @@ export function FastbankSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="p-4 border-t border-sidebar-border">
-        <div className="flex flex-col gap-2">
-          {!collapsed && (
-            <div className="mb-2">
-              <div className="text-sm font-medium text-sidebar-foreground">Carlos José Fernandes</div>
-              <div className="text-xs text-muted-foreground">Saldo: R$ 32,40</div>
-              <div className="text-xs text-muted-foreground">Saldo clientes: R$ 0,22</div>
-            </div>
-          )}
+        <div className="flex gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={toggleTheme}
+            className="flex-1 text-sidebar-foreground hover:bg-sidebar-accent"
+          >
+            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            {!collapsed && <span className="ml-2">{isDark ? "Claro" : "Escuro"}</span>}
+          </Button>
           
-          <div className="flex gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleTheme}
-              className="flex-1 text-sidebar-foreground hover:bg-sidebar-accent"
-            >
-              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              {!collapsed && <span className="ml-2">{isDark ? "Claro" : "Escuro"}</span>}
-            </Button>
-            
-            <Button
-              variant="ghost"
-              size="sm"
-              className="flex-1 text-sidebar-foreground hover:bg-sidebar-accent"
-            >
-              <LogOut className="w-4 h-4" />
-              {!collapsed && <span className="ml-2">Logout</span>}
-            </Button>
-          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="flex-1 text-sidebar-foreground hover:bg-sidebar-accent"
+          >
+            <LogOut className="w-4 h-4" />
+            {!collapsed && <span className="ml-2">Logout</span>}
+          </Button>
         </div>
       </SidebarFooter>
     </Sidebar>
