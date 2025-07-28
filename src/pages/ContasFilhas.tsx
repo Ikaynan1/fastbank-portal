@@ -307,22 +307,22 @@ export default function ContasFilhas() {
                                 <DollarSign className="w-4 h-4" />
                               </Button>
                             </SheetTrigger>
-                            <SheetContent className="w-[400px] sm:w-[540px] bg-background border-border">
+                            <SheetContent className="w-[400px] sm:w-[540px] bg-gray-900 border-gray-700">
                               <SheetHeader>
-                                <SheetTitle className="text-left text-foreground">
+                                <SheetTitle className="text-left text-white font-semibold">
                                   CONTA: {selectedConta?.nome || conta.nome}
                                 </SheetTitle>
                               </SheetHeader>
                               <div className="mt-6 space-y-6">
                                 <div>
-                                  <h3 className="text-lg font-semibold text-foreground">
+                                  <h3 className="text-lg font-semibold text-white">
                                     SALDO DA CONTA: {selectedConta?.saldo || conta.saldo}
                                   </h3>
                                 </div>
                                 
                                 <div className="space-y-4">
                                   <div>
-                                    <label htmlFor="qrcode" className="block text-sm font-medium text-foreground mb-2">
+                                    <label htmlFor="qrcode" className="block text-sm font-medium text-gray-200 mb-2">
                                       Cole o QR Code aqui:
                                     </label>
                                     <Input
@@ -330,7 +330,7 @@ export default function ContasFilhas() {
                                       placeholder="Cole o código QR aqui..."
                                       value={qrCode}
                                       onChange={(e) => setQrCode(e.target.value)}
-                                      className="w-full"
+                                      className="w-full bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-blue-500"
                                     />
                                   </div>
                                   
