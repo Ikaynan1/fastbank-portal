@@ -307,9 +307,9 @@ export default function ContasFilhas() {
                                 <DollarSign className="w-4 h-4" />
                               </Button>
                             </SheetTrigger>
-                            <SheetContent className="w-[400px] sm:w-[540px]">
+                            <SheetContent className="w-[400px] sm:w-[540px] bg-background border-border">
                               <SheetHeader>
-                                <SheetTitle className="text-left">
+                                <SheetTitle className="text-left text-foreground">
                                   CONTA: {selectedConta?.nome || conta.nome}
                                 </SheetTitle>
                               </SheetHeader>
