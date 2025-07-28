@@ -170,6 +170,7 @@ export default function ContasFilhas() {
   const [isCreating, setIsCreating] = useState(false);
   const [selectedConta, setSelectedConta] = useState<ContaFilha | null>(null);
   const [qrCode, setQrCode] = useState("");
+  const [saldoContaMae, setSaldoContaMae] = useState(64.62);
   const { toast } = useToast();
 
   const filteredContas = contas.filter(conta =>
@@ -283,12 +284,12 @@ export default function ContasFilhas() {
                           <div className="text-sm text-muted-foreground">{conta.nome}</div>
                         </div>
                       </TableCell>
-                       <TableCell>
-                         <div>
-                           <div className="font-medium">{conta.saldo}</div>
-                           <div className="text-xs text-muted-foreground">Saldo da Conta Mãe: R$ 32,40</div>
-                         </div>
-                       </TableCell>
+                        <TableCell>
+                          <div>
+                            <div className="font-medium">{conta.saldo}</div>
+                            <div className="text-xs text-muted-foreground">Saldo da Conta Mãe: R$ {saldoContaMae.toFixed(2).replace('.', ',')}</div>
+                          </div>
+                        </TableCell>
                       <TableCell className="font-mono text-sm">{conta.chavePix}</TableCell>
                       <TableCell>{conta.nascimento}</TableCell>
                       <TableCell>{conta.criacao}</TableCell>
@@ -338,9 +339,22 @@ export default function ContasFilhas() {
                                     className="w-full shadow-glow"
                                     onClick={() => {
                                       if (qrCode.trim()) {
+                                        if (saldoContaMae < 20) {
+                                          toast({
+                                            title: "Saldo insuficiente",
+                                            description: "Saldo insuficiente para realizar o pagamento.",
+                                            variant: "destructive",
+                                            duration: 3000,
+                                          });
+                                          return;
+                                        }
+                                        
+                                        // Descontar R$ 20,00 do saldo da Conta Mãe
+                                        setSaldoContaMae(prev => prev - 20);
+                                        
                                         toast({
-                                          title: "QR Code enviado!",
-                                          description: `QR Code processado para ${selectedConta?.nome || conta.nome}`,
+                                          title: "Pagamento realizado!",
+                                          description: `Pagamento de R$ 20,00 realizado com sucesso para ${selectedConta?.nome || conta.nome}`,
                                           duration: 3000,
                                         });
                                         setQrCode("");
