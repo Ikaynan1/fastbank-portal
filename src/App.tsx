@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { FastbankSidebar } from "@/components/FastbankSidebar";
 import Dashboard from "./pages/Dashboard";
 import ContasFilhas from "./pages/ContasFilhas";
@@ -19,7 +19,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <HashRouter>
         <div className="dark min-h-screen bg-background">
           <SidebarProvider>
             <div className="flex min-h-screen w-full">
@@ -37,7 +37,7 @@ const App = () => (
             </div>
           </SidebarProvider>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
